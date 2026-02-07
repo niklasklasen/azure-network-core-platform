@@ -102,3 +102,16 @@ resource "azapi_resource" "staticMember-1" {
   schema_validation_enabled = false
   response_export_values    = ["*"]
 }
+
+resource "azapi_resource" "staticMember-2" {
+  type      = "Microsoft.Network/networkManagers/networkGroups/staticMembers@2024-10-01"
+  parent_id = azapi_resource.networkGroup-2.id
+  name      = "static-member-vnet-2"
+  body = jsonencode({
+    properties = {
+      resourceId = var.vnet-2-id
+    }
+  })
+  schema_validation_enabled = false
+  response_export_values    = ["*"]
+}
